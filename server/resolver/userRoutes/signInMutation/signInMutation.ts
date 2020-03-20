@@ -1,5 +1,5 @@
 import {UserInputError} from 'apollo-server';
-import {TUserCredential} from '../../types';
+import {TUserCredential} from '../../../types';
 import signInUser from "./signInUser";
 
 export default function signInMutation({email, password}: TUserCredential) {
