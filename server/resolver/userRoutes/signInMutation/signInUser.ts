@@ -4,17 +4,18 @@ import {TUserCredential} from "../../../types";
 import UserModal from "../../../models/userModel";
 import returnPrevUser from "../../util/returnPrevUser";
 const saltRounds = 10;
-export default function signInUser({ email,password }:TUserCredential ) {
+export default function signInUser({ email,password,name }:TUserCredential ) {
     return UserModal.findOne({ email })
         .then( (user) => {
             if(user){
-              return returnPrevUser({ email, password, user })
+              return returnPrevUser({ email, password, name,user })
             }else{
                 return bcrypt.hash(password, saltRounds)
                     .then(passwordBcrypt => {
                         const newUser = new UserModal({
                             email,
-                            password: passwordBcrypt
+                            password: passwordBcrypt,
+                            name
                         });
                         const token =  jwt.sign({email}, "string");
                         return newUser.save()

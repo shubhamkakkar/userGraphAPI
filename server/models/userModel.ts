@@ -5,10 +5,18 @@ const userModel = new Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true
     },
+    blogs: {
+        type: [Number],
+        default: []
+    }
 }, {collection: "users"});
 
 export default model('userModel', userModel)
