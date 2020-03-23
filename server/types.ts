@@ -11,15 +11,22 @@ export type  TUser = {
 export type TUserCredential = {
     email: string;
     password: string;
-    name: string;
+    name?: string;
 }
 
-export type TCreateBlog = {
-    token: string;
+
+export type TBlogFields = {
     blogHeader: string;
     blogContent: string;
     tags: string[];
+}
 
+export interface TCreateBlog extends TBlogFields {
+    token: string;
+}
+
+export interface TCreateBlogFn extends TBlogFields{
+    userId: string;
 }
 
 export type TBlog = {
