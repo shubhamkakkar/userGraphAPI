@@ -12,7 +12,7 @@ const userModel = new Schema({
     password: {
         type: String,
         required: true
-    },
+    }
 }, {collection: "users"});
 
 export default model('userModel', userModel)

@@ -2,7 +2,7 @@ import {gql} from 'apollo-server'
 
 export default gql`
     extend type Mutation {
-        createBlog(token: String!, blogHeader: String!, blockContent:String!, tags: [String]):Blog
+        createBlog(token: String!, blogHeader: String!, blogContent:String!, tags: [String]):Blog
     }
     extend  type Query {
         getAllBlogs: [Blog]

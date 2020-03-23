@@ -1,4 +1,7 @@
 import {Schema, model} from "mongoose";
+const createdDate = new Date();
+const [createdDateFormatYYYYMMDD] = createdDate.toISOString().split("T");
+
 const blogModel = new Schema({
     blogHeader: {
         type: String,
@@ -9,13 +12,17 @@ const blogModel = new Schema({
         required: true
     },
     tags: {
-        type: String,
+        type: [String],
         required: false,
         default: []
     },
     userId:{
         type: String,
         required: true
+    },
+    createdAt: {
+        type: String,
+        default: createdDateFormatYYYYMMDD
     }
 }, {collection: "blogs"});
 

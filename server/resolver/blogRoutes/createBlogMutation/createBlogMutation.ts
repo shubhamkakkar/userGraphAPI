@@ -7,7 +7,7 @@ type TDecodeJWT = {
   email: string;
 };
 
-export default function createBlogMutation({token}: TCreateBlog) {
+export default function createBlogMutation({token, ...rest}: TCreateBlog) {
   // @ts-ignore
   const {email}: TDecodeJWT = jwt.verify(token, 'string');
   UserSchema.findOne({email}).then(user => {
