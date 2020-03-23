@@ -9,7 +9,6 @@ export default gql`
         email: String!
         id: ID!
         token: String!
-        blogsId: [ID]
         name : String!
     }
 `

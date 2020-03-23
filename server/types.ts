@@ -2,11 +2,8 @@ export type  TUser = {
     email: string;
     token: string;
     id: number;
-    blogsId: Array<number>;
     name: string;
 }
-
-
 
 export type TUserCredential = {
     email: string;
