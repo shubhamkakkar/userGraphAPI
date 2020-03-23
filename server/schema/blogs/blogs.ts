@@ -13,5 +13,6 @@ export default gql`
         blogHeader: String!
         blogContent: String!
         userId: ID!
+        tags: [String]
     }
 `;
