@@ -1,9 +1,10 @@
 import {TCreateBlog, TUserCredential} from "../types";
 import {signInMutation,logInMutation} from "./userRoutes";
-import {createBlogMutation} from "./blogRoutes";
+import {createBlogMutation, getAllBlogs} from "./blogRoutes";
 
 export default {
     Query: {
+        getAllBlogs
     },
     Mutation: {
         signIn: (_: any, args: TUserCredential) => signInMutation(args),

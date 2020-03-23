@@ -21,5 +21,6 @@ export default function createBlogMutation({token, ...rest}: TCreateBlog) {
     })
     .catch(er => {
       console.log('er getting users in createBlogUserFind', er);
+      return er;
     });
 }

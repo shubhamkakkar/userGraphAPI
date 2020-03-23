@@ -1,3 +1,3 @@
 import createBlogMutation from './createBlogMutation/createBlogMutation';
-
-export {createBlogMutation};
+import getAllBlogs from './getAllBlogs/getAllBlogs';
+export {createBlogMutation, getAllBlogs};
