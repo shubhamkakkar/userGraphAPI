@@ -5,6 +5,18 @@ export default gql`
     signIn(email: String!, password: String!, name: String!): User
     logIn(email: String!, password: String!): User
   }
+
+  extend type Query {
+    getMyBlogs(token: String!): MyBlogs
+  }
+
+  type MyBlogs {
+    createdAt: String!
+    blogHeader: String!
+    blogContent: String!
+    tags: [String]
+  }
+
   type User {
     email: String!
     id: ID!
