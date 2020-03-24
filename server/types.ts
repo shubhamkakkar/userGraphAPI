@@ -32,7 +32,11 @@ export type TBlog = {
   userId: string;
 };
 
-type TCreatorOfBlog = {
+export type TCreatorOfBlog = {
   email: string;
   name: string;
+};
+
+export type TGetMyBlogsQueryParameter = {
+  token: string;
 };

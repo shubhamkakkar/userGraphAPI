@@ -1,12 +1,13 @@
-/* eslint-disable no-unused-vars */
-import {TCreateBlog, TUserCredential} from '../types';
-import {signInMutation, logInMutation} from './userRoutes';
+import {TCreateBlog, TGetMyBlogsQueryParameter, TUserCredential} from '../types';
+import {signInMutation, logInMutation,getMyBlogsQuery} from './userRoutes';
 import {createBlogMutation, getAllBlogs} from './blogRoutes';
 
 export default {
   Query: {
     getAllBlogs,
-  },
+    getMyBlogs:(_:any, params:TGetMyBlogsQueryParameter) => getMyBlogsQuery(params)
+
+},
   Mutation: {
     signIn: (_: any, args: TUserCredential) => signInMutation(args),
     logIn: (_: any, args: TUserCredential) => logInMutation(args),

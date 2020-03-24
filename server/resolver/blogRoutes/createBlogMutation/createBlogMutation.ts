@@ -1,15 +1,11 @@
 import {TCreateBlog} from '../../../types';
 import UserSchema from '../../../models/userModel';
-import jwt from 'jsonwebtoken';
 import createBlog from './createBlog';
+import emailFromToken from "../../util/emailFromToken";
 
-type TDecodeJWT = {
-  email: string;
-};
 
 export default function createBlogMutation({token, ...rest}: TCreateBlog) {
-  // @ts-ignore
-  const {email}: TDecodeJWT = jwt.verify(token, 'string');
+  const email = emailFromToken({token});
   return UserSchema.findOne({email})
     .then(user => {
       if (user) {
