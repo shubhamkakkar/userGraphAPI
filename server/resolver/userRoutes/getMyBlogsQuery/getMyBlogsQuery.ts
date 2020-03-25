@@ -11,10 +11,14 @@ export default function getMyBlogsQuery({token, ...filterOptions}: TGetMyBlogsQu
       if (user) {
         // @ts-ignore
         const {_id} = user._doc;
-        const filterSearchConfig = filterConfigGenerator(filterOptions);
-        return BlogsSchema.find({userId: _id, ...filterSearchConfig})
-          .then(userSpecificBlogs => userSpecificBlogs)
-          .catch(erUserSpecificBlogs => erUserSpecificBlogs);
+        const [filterSearchConfig, error] = filterConfigGenerator(filterOptions);
+        if (error.invalidArgs) {
+          throw new UserInputError(error.message || 'Error', {invalidArgs: error.invalidArgs});
+        } else {
+          return BlogsSchema.find({userId: _id, ...filterSearchConfig})
+            .then(userSpecificBlogs => userSpecificBlogs)
+            .catch(erUserSpecificBlogs => erUserSpecificBlogs);
+        }
       } else {
         throw new UserInputError('User not found', {invalidArgs: email});
       }

@@ -1,8 +1,18 @@
-import {UserInputError} from 'apollo-server';
-import {TFilterDBSearch} from './../../types';
+import {FilterQuery} from 'mongoose';
+import {TFilterDBSearch} from '../../types';
 import regexYYYYMMDDFormatCheck from './regexYYYYMMDDFormatCheck';
-export default function filterConfigGenerator({createdAt, beforeCurrentData}: TFilterDBSearch) {
+
+type TErrorFilerConfigGenerator = {
+  invalidArgs?: string;
+  message?: string;
+};
+
+export default function filterConfigGenerator({
+  createdAt,
+  beforeCurrentData,
+}: TFilterDBSearch): [FilterQuery<any>, TErrorFilerConfigGenerator] {
   let filterSearchConfig = {};
+  let error: TErrorFilerConfigGenerator = {};
   if (createdAt) {
     const correctDateFormatCheckBool = regexYYYYMMDDFormatCheck(createdAt);
     if (correctDateFormatCheckBool) {
@@ -14,11 +24,12 @@ export default function filterConfigGenerator({createdAt, beforeCurrentData}: TF
         },
       };
     } else {
-      throw new UserInputError('Date is invalid, the format should be YYYY-MM-DD and must also be valid', {
+      error = {
+        message: 'Date is invalid, the format should be YYYY-MM-DD and must also be valid',
         invalidArgs: createdAt,
-      });
+      };
     }
   }
 
-  return filterSearchConfig;
+  return [filterSearchConfig, error];
 }
