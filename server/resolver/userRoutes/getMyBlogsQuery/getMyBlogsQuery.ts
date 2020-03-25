@@ -23,7 +23,9 @@ export default function getMyBlogsQuery({token, createdAt, beforeCurrentData}: T
               },
             };
           } else {
-            throw new UserInputError('Date is invalid, the format should be YYYY-MM-DD', {invalidArgs: createdAt});
+            throw new UserInputError('Date is invalid, the format should be YYYY-MM-DD and must also be valid', {
+              invalidArgs: createdAt,
+            });
           }
         }
         console.log({filterSearchConfig});
