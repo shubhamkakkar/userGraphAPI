@@ -7,7 +7,7 @@ export default gql`
   }
 
   extend type Query {
-    getMyBlogs(token: String!): [MyBlogs]
+    getMyBlogs(token: String!, createdAt: String, beforeCurrentData: Boolean): [MyBlogs]
   }
 
   type MyBlogs {

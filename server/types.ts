@@ -40,4 +40,6 @@ export type TCreatorOfBlog = {
 
 export type TGetMyBlogsQueryParameter = {
   token: string;
+  createdAt?: string;
+  beforeCurrentData?: boolean;
 };
