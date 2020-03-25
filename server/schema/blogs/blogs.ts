@@ -5,7 +5,7 @@ export default gql`
     createBlog(token: String!, blogHeader: String!, blogContent: String!, tags: [String]): Blog
   }
   extend type Query {
-    getAllBlogs(tags: [String]): [Blog]
+    getAllBlogs(tags: [String], createdAt: String, beforeCurrentData: Boolean): [Blog]
   }
 
   type Blog {

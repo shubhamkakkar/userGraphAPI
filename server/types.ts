@@ -38,8 +38,12 @@ export type TCreatorOfBlog = {
   _id?: string;
 };
 
-export type TGetMyBlogsQueryParameter = {
+export interface TGetMyBlogsQueryParameter extends TFilterDBSearch {
   token: string;
+}
+
+export type TFilterDBSearch = {
   createdAt?: string;
   beforeCurrentData?: boolean;
+  tags?: string[];
 };

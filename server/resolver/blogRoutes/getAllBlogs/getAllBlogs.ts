@@ -1,11 +1,14 @@
-import {TBlog} from './../../../types';
 import BlogSchema from '../../../models/blogModel';
 import UserSchema from '../../../models/userModel';
-export default function getAllBlogs() {
-  return BlogSchema.find()
+import {TBlog, TFilterDBSearch} from '../../../types';
+import filterConfigGenerator from '../../util/filterConfigGenerator';
+
+export default function getAllBlogs({...filterOptions}: TFilterDBSearch) {
+  const filterSearchConfig = filterConfigGenerator(filterOptions);
+
+  return BlogSchema.find({...filterSearchConfig})
     .then(blogs => {
       // @ts-ignore
-
       return blogs.map((blog: TBlog) => {
         const {userId, ...restBlogInfo} = blog;
         return UserSchema.findById(userId)
