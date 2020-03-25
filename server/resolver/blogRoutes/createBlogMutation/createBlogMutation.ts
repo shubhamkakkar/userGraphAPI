@@ -1,8 +1,7 @@
 import {TCreateBlog} from '../../../types';
 import UserSchema from '../../../models/userModel';
 import createBlog from './createBlog';
-import emailFromToken from "../../util/emailFromToken";
-
+import emailFromToken from '../../util/emailFromToken';
 
 export default function createBlogMutation({token, ...rest}: TCreateBlog) {
   const email = emailFromToken({token});
@@ -10,7 +9,7 @@ export default function createBlogMutation({token, ...rest}: TCreateBlog) {
     .then(user => {
       if (user) {
         //@ts-ignore
-        return createBlog({userId: user._doc._id, ...rest});
+        return createBlog({user: user._doc, ...rest});
       } else {
         console.log('no user found');
       }

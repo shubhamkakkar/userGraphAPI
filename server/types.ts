@@ -22,7 +22,7 @@ export interface TCreateBlog extends TBlogFields {
 }
 
 export interface TCreateBlogFn extends TBlogFields {
-  userId: string;
+  user: TCreatorOfBlog;
 }
 
 export type TBlog = {
@@ -35,6 +35,7 @@ export type TBlog = {
 export type TCreatorOfBlog = {
   email: string;
   name: string;
+  _id?: string;
 };
 
 export type TGetMyBlogsQueryParameter = {
