@@ -10,6 +10,7 @@ type TErrorFilerConfigGenerator = {
 export default function filterConfigGenerator({
   createdAt,
   beforeCurrentData,
+  tags,
 }: TFilterDBSearch): [FilterQuery<any>, TErrorFilerConfigGenerator] {
   let filterSearchConfig = {};
   let error: TErrorFilerConfigGenerator = {};
@@ -29,6 +30,15 @@ export default function filterConfigGenerator({
         invalidArgs: createdAt,
       };
     }
+  }
+
+  if (tags && tags.length) {
+    filterSearchConfig = {
+      ...filterSearchConfig,
+      tags: {
+        $in: tags,
+      },
+    };
   }
 
   return [filterSearchConfig, error];
